@@ -1,11 +1,16 @@
 
 package domain;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Entity;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.URL;
 
+@Entity
+@Access(AccessType.PROPERTY)
 public class PersonalRecord extends DomainEntity {
 
 	private String	nameHandyWorker;
@@ -22,6 +27,7 @@ public class PersonalRecord extends DomainEntity {
 	public void setNameHandyWorker(final String nameHandyWorker) {
 		this.nameHandyWorker = nameHandyWorker;
 	}
+
 	@URL
 	public String getPhoto() {
 		return this.photo;
