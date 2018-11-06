@@ -3,6 +3,12 @@ package domain;
 
 import java.util.Collection;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Email;
@@ -11,6 +17,8 @@ import org.hibernate.validator.constraints.URL;
 
 import security.UserAccount;
 
+@Entity
+@Access(AccessType.PROPERTY)
 public class Actor extends DomainEntity {
 
 	private String								name;
@@ -103,6 +111,7 @@ public class Actor extends DomainEntity {
 		this.numberSocialProfiles = numberSocialProfiles;
 	}
 
+	@OneToOne(cascade = CascadeType.ALL)
 	public UserAccount getUserAccount() {
 		return this.userAccount;
 	}
@@ -111,6 +120,7 @@ public class Actor extends DomainEntity {
 		this.userAccount = userAccount;
 	}
 
+	@OneToMany
 	public Collection<ProfileSocialNetwork> getProfileSocialNetwork() {
 		return this.profileSocialNetwork;
 	}
@@ -119,6 +129,7 @@ public class Actor extends DomainEntity {
 		this.profileSocialNetwork = profileSocialNetwork;
 	}
 
+	@OneToMany
 	public Collection<MessageBox> getMessageBox() {
 		return this.messageBox;
 	}

@@ -4,10 +4,19 @@ package domain;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.Range;
 
+@Entity
+@Access(AccessType.PROPERTY)
 public class Message extends DomainEntity {
 
 	private Date					moment;
@@ -23,6 +32,7 @@ public class Message extends DomainEntity {
 
 
 	@Past
+	@Temporal(TemporalType.DATE)
 	public Date getMoment() {
 		return this.moment;
 	}
@@ -65,6 +75,7 @@ public class Message extends DomainEntity {
 		this.tag = tag;
 	}
 
+	@OneToOne(optional = false)
 	public Actor getSender() {
 		return this.sender;
 	}
@@ -73,6 +84,7 @@ public class Message extends DomainEntity {
 		this.sender = sender;
 	}
 
+	@OneToOne(optional = false)
 	public Actor getReceiver() {
 		return this.receiver;
 	}
@@ -81,6 +93,7 @@ public class Message extends DomainEntity {
 		this.receiver = receiver;
 	}
 
+	@ManyToMany
 	public Collection<MessageBox> getMessageBox() {
 		return this.messageBox;
 	}
