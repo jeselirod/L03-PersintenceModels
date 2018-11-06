@@ -49,7 +49,7 @@ public class Authority implements GrantedAuthority {
 
 
 	@NotBlank
-	@Pattern(regexp = "^" + Authority.ADMIN + "|" + Authority.CUSTOMER + Authority.REFEREE + Authority.SPONSOR + Authority.HANDYWORKER + "$")
+	@Pattern(regexp = "^" + Authority.ADMIN + "|" + Authority.CUSTOMER + "|" + Authority.REFEREE + "|" + Authority.SPONSOR + "|" + Authority.HANDYWORKER + "$")
 	@Override
 	public String getAuthority() {
 		return this.authority;
